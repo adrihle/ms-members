@@ -1,6 +1,9 @@
+import { Avatar } from "antd";
 import { IMember } from "interfaces";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Wrapper } from './style';
+import { LOGO_SMALL_URL } from "@constants";
+import { T } from "i18n";
 
 interface Props {
   member: IMember;
@@ -9,16 +12,27 @@ interface Props {
 }
 
 export const MemberCard: React.FC<Props> = ({ member, setOpenModal, setMember }) => {
-  const { name } = member;
+  const { name, age } = member;
+  const [image, setImage] = useState<string>(LOGO_SMALL_URL);
   
   const handleOpenModal = () => {
     setMember(member);
     setOpenModal(true);
   };
 
+  useEffect(() => {
+    setImage(member.image);
+  }, [member]);
+
   return (
     <Wrapper onClick={handleOpenModal}>
-      {name}
+      <section>
+        <Avatar src={image} shape='circle' onError={() =>{ setImage(LOGO_SMALL_URL); return false}}/>
+        <p>{name}</p>
+      </section>
+      <section>
+        <p>{T.MEMBER_AGE(age)}</p>
+      </section>
     </Wrapper>
   )
-}
+};
