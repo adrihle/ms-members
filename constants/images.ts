@@ -1,0 +1,1 @@
+export const LOGO = 'https://www.mediasmart.io/images/logo-mediasmart.svg';
