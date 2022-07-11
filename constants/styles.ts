@@ -1,7 +1,3 @@
-export const MOBILE = 360;
-export const TABLET = 770;
-export const DESKTOP = 1024;
-
 export enum EBreakpoints {
   MOBILE = 'MOBILE',
   TABLET = 'TABLET',

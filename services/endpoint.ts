@@ -2,7 +2,6 @@ import { PAGE_SIZE } from "@constants";
 import axios from "axios";
 import { env } from "env";
 import { IMember } from "interfaces";
-import { fetcher } from "modules";
 
 const ENDPOINT_URL = env.endpoint;
 const TOKEN = process.env.TOKEN ?? '';
