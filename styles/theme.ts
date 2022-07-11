@@ -20,7 +20,8 @@ export const defaultTheme: DefaultTheme = {
     [EColors.SECONDARY]: '#0255a8',
     [EColors.TEXT_CONTENT]: '#666f80',
     [EColors.TEXT_PRIMARY]: '#3d3d3d',
-    [EColors.TEXT_SECONDARY]: '##e02121'
+    [EColors.TEXT_SECONDARY]: '##e02121',
+    [EColors.SHADOW]: '#eaf0f6'
   },
   fontSize: {
     [EFontSize.TITLE]: '18px',
@@ -38,7 +39,7 @@ export const defaultTheme: DefaultTheme = {
   imageResponsive: {
     [EBreakpoints.MOBILE]: 100,
     [EBreakpoints.TABLET]: 120,
-    [EBreakpoints.DESKTOP]: 120
+    [EBreakpoints.DESKTOP]: 100
   },
   listGridResponsive: {
     [EBreakpoints.MOBILE]: 1,

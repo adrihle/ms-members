@@ -8,6 +8,7 @@ export const CardWrapper = styled.section<{ grid: number }>`
   justify-items: center;
   max-width: 1300px;
   width: 100%;
+  margin-top: 30px;
 `;
 
 export const Wrapper = styled.section`

@@ -1,10 +1,11 @@
-import { Avatar } from "antd";
+import { Avatar, Badge, Tag } from "antd";
 import { IMember } from "interfaces";
 import React, { useEffect, useState } from "react";
-import { Wrapper } from './style';
+import { HeaderWrapper, TagWrapper, Wrapper } from './style';
 import { LOGO_SMALL_URL } from "@constants";
 import { T } from "i18n";
 import { useResponsive } from "@hooks";
+import { useTheme } from "styled-components";
 
 interface Props {
   member: IMember;
@@ -14,6 +15,7 @@ interface Props {
 
 export const MemberCard: React.FC<Props> = ({ member, setOpenModal, setMember }) => {
   const { imageSize } = useResponsive();
+  const { colors } = useTheme();
   const { name, age } = member;
   const [image, setImage] = useState<string>(LOGO_SMALL_URL);
   
@@ -28,7 +30,7 @@ export const MemberCard: React.FC<Props> = ({ member, setOpenModal, setMember })
 
   return (
     <Wrapper onClick={handleOpenModal}>
-      <section>
+      <HeaderWrapper>
         <Avatar 
           src={image} 
           shape='circle' 
@@ -36,10 +38,10 @@ export const MemberCard: React.FC<Props> = ({ member, setOpenModal, setMember })
           size={imageSize}
         />
         <p>{name}</p>
-      </section>
-      <section>
-        <p>{T.MEMBER_AGE(age)}</p>
-      </section>
+      </HeaderWrapper>
+      <TagWrapper>
+        <Tag color={colors.PRIMARY}>{T.MEMBER_AGE(age)}</Tag>
+      </TagWrapper>
     </Wrapper>
   )
 };
