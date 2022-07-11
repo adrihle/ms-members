@@ -3,7 +3,7 @@ import { IMember } from "interfaces";
 import { TagWrapper, Wrapper } from './style';
 import { T } from "i18n";
 import { useTheme } from "styled-components";
-import { CardHeader } from "../card-header";
+import { MemberResume } from "@components";
 
 interface Props {
   member: IMember;
@@ -22,7 +22,7 @@ export const MemberCard: React.FC<Props> = ({ member, setOpenModal, setMember })
 
   return (
     <Wrapper onClick={handleOpenModal}>
-      <CardHeader {...{member: rest}}/>
+      <MemberResume {...{ member: rest, showBio: false }}/>
       <TagWrapper>
         <Tag color={colors.PRIMARY}>{T.MEMBER_AGE(age)}</Tag>
       </TagWrapper>
