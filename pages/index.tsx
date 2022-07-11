@@ -5,6 +5,7 @@ import { MemberListContainer } from '@containers';
 import axios from 'axios';
 import { IMember } from 'interfaces';
 import { PAGE_SIZE } from '@constants';
+import { MemberService } from 'services';
 
 const Wrapper = styled.div``;
 
@@ -21,9 +22,10 @@ const Home: NextPage<Props> = ({ members }) => {
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ query: { page } }) => {
+  const response = await MemberService.getMembers(page);
   return {
     props: {
-      members: await axios.get<IMember[]>(`http://localhost:3000/api/members?page=${page}&pageSize=${PAGE_SIZE}`).then(res => res.data)
+      members: response.data ?? []
     }
   };
 };

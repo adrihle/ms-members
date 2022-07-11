@@ -1,16 +1,16 @@
+import { PAGE_SIZE } from "@constants";
 import { IMember } from "interfaces";
-import { HttpBase } from "modules";
+import { HttpService } from "modules";
 
-const BASE_URL = 'members';
+const BASE_URL = '/members';
 
-export class MembersHttp extends HttpBase {
+export class MembersHttp extends HttpService {
   constructor (){
     super(BASE_URL)
   }
 
-  async getMembers (page: number, pageSize: number) {
-    console.log({ page })
-    return this.http.get<IMember[]>(BASE_URL)
+  async getMembers (page: any) {
+    return this.http.get<IMember[]>(`/?page=${page}&pageSize=${PAGE_SIZE}`)
   }
 };
 
