@@ -1,10 +1,7 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import styled from 'styled-components';
-
 import { MemberListContainer } from '@containers';
-import axios from 'axios';
 import { IMember } from 'interfaces';
-import { PAGE_SIZE } from '@constants';
 import { MemberService } from 'services';
 
 const Wrapper = styled.div``;

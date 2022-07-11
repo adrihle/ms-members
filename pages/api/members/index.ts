@@ -1,34 +1,29 @@
-import axios from "axios";
 import { HttpStatus, IMember } from "interfaces";
 import { createEndpoints, RouteError, RouteHandler } from "modules";
 import cache from 'memory-cache';
-import { formatMembers } from "helpers";
-import { env } from "env";
+import { formatMembers, getSecondsToCleanCache } from "helpers";
 import { EndpointService } from "services";
 
-const ENDPOINT = env.endpoint;
-
 const getMembers = async (page = 1): Promise<IMember[]> => {
+  const cachedMembers = cache.get(page);
+  if (cachedMembers) return formatMembers(cachedMembers);
+
+  const secondsToRevalidate = getSecondsToCleanCache();
+
   const members = await EndpointService.getMembers(page);
+
+  cache.put(page, members, secondsToRevalidate);
   
   if (!members) throw new RouteError(HttpStatus.NOT_FOUND, 'Members not found');
 
-  const formatedMembers = formatMembers(members);
-  cache.put(page, formatedMembers);
-  return formatedMembers;
+  return formatMembers(members);
 };
 
-const getCachedMembers = (page: number): IMember[] => {
-  return cache.get(page);
-};
-
-const get: RouteHandler<IMember[]> = async ({ query }) => {
-  const {page, pageSize} = query;
+const get: RouteHandler<IMember[]> = async ({ query: { page } }) => {
   const pageInt = Number(page);
-  const pageSizeInt = Number(pageSize);
   return {
     status: HttpStatus.OK,
-    body: getCachedMembers(pageInt) ?? await getMembers(pageInt)
+    body: await getMembers(pageInt)
   }
 }
 

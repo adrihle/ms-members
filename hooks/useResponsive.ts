@@ -1,4 +1,4 @@
-import { AVATAR_SIZE, DESKTOP, EBreakpoints, TABLET } from "@constants";
+import { EBreakpoints } from "@constants";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 

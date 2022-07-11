@@ -5,6 +5,8 @@ type EnvironmentType = "development" | "production" | "test";
 export interface IEnvironment {
   endpoint: string;
   api: string;
+  endpointRefreshHour: number;
+  endpointRefreshMinute: number;
 }
 
 const envFileRelationship: Record<EnvironmentType, any> = {
