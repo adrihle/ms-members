@@ -11,6 +11,7 @@ declare module 'styled-components' {
     borderRadius: Record<EBorderRadius, string>;
     imageResponsive: TResponsiveSizes;
     listGridResponsive: TResponsiveSizes;
+    logoResponsive: TResponsiveSizes;
   } 
 };
 
@@ -45,5 +46,10 @@ export const defaultTheme: DefaultTheme = {
     [EBreakpoints.MOBILE]: 1,
     [EBreakpoints.TABLET]: 2,
     [EBreakpoints.DESKTOP]: 3
+  },
+  logoResponsive: {
+    [EBreakpoints.MOBILE]: 200,
+    [EBreakpoints.TABLET]: 250,
+    [EBreakpoints.DESKTOP]: 250
   }
 }

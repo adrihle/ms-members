@@ -5,6 +5,8 @@ import { useTheme } from "styled-components";
 interface IUseResponsive {
   imageSize: number;
   grid: number;
+  logoSize: number;
+  resolution: EBreakpoints;
 }
 
 export const useResponsive = (): IUseResponsive => {
@@ -12,7 +14,8 @@ export const useResponsive = (): IUseResponsive => {
   const { 
     breakpoints,
     imageResponsive,
-    listGridResponsive
+    listGridResponsive,
+    logoResponsive
   } = useTheme();
   const [resolution, setResolution] = useState<EBreakpoints>(EBreakpoints.MOBILE);
 
@@ -40,7 +43,9 @@ export const useResponsive = (): IUseResponsive => {
 
 
   return {
+    resolution,
     imageSize: imageResponsive[resolution],
-    grid: listGridResponsive[resolution]
+    grid: listGridResponsive[resolution],
+    logoSize: logoResponsive[resolution]
   }
 }
