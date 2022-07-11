@@ -10,7 +10,12 @@ export class MembersHttp extends HttpService {
   }
 
   async getMembers (page: any) {
-    return this.http.get<IMember[]>(`/?page=${page}&pageSize=${PAGE_SIZE}`)
+    return this.http.get<IMember[]>(`/?page=${page}&pageSize=${PAGE_SIZE}`);
+  };
+
+  async getMember (id: any, page: any) {
+    console.log({ id, page })
+    return this.http.get<IMember>(`/${id}/?page=${page}`);
   }
 };
 

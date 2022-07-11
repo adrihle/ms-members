@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { MemberListContainer } from '@containers';
 import { IMember } from 'interfaces';
 import { MemberService } from 'services';
+import { useMembers } from '@hooks';
+import { useEffect } from 'react';
 
 const Wrapper = styled.div``;
 
@@ -11,6 +13,10 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ members }) => {
+  const setMembers = useMembers(state => state.setMembers);
+  useEffect(() => {
+    setMembers(members)
+  }, [members, setMembers]);
   return (
     <Wrapper>
       <MemberListContainer {...{members}}/>

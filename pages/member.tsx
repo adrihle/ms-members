@@ -1,30 +1,25 @@
-import { MemberListContainer } from "@containers";
-import { IMember } from "interfaces";
-import { NextPage, GetServerSideProps } from "next";
-import { MemberService } from "services";
+import { MemberViewContainer } from "@containers";
+import { useMembers } from "@hooks";
+import { NextPage } from "next";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import styled from "styled-components";
-
-interface Props {
-  members: IMember[];
-}
 
 const Wrapper = styled.div``;
 
-const MemberPage: NextPage<Props> = ({ members }) => {
+const MemberPage: NextPage = () => {
+  const { query: {member: memberId }} = useRouter();
+  const setCurrentMember = useMembers(state => state.setCurrentMember);
+
+  useEffect(() => {
+    setCurrentMember(String(memberId))
+  }, [memberId, setCurrentMember]);
+
   return (
     <Wrapper>
-      <MemberListContainer {...{members}}/>
+      <MemberViewContainer />
     </Wrapper>
   )
 }
-
-export const getServerSideProps: GetServerSideProps<Props> = async ({ query: { page } }) => {
-  const response = await MemberService.getMembers(page);
-  return {
-    props: {
-      members: response.data ?? []
-    }
-  };
-};
 
 export default MemberPage

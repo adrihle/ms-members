@@ -23,4 +23,9 @@ export const HeaderWrapper = styled.div`
 
 export const TagWrapper = styled.div`
   margin: 10px 0 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
+
+export const ModalWrapper = styled.div``;
