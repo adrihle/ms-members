@@ -1,14 +1,16 @@
 import { HttpStatus, IMember } from "interfaces";
 import { createEndpoints, RouteError, RouteHandler } from "modules";
 import cache from 'memory-cache';
-import { formatMembers, getSecondsToCleanCache } from "helpers";
+import { formatMembers, getMilisecondsToRevalidateCache } from "helpers";
 import { EndpointService } from "services";
 
 const getMembers = async (page = 1): Promise<IMember[]> => {
   const cachedMembers = cache.get(page);
   if (cachedMembers) return formatMembers(cachedMembers);
 
-  const secondsToRevalidate = getSecondsToCleanCache();
+  const secondsToRevalidate = getMilisecondsToRevalidateCache();
+
+  console.log({ secondsToRevalidate })
 
   const members = await EndpointService.getMembers(page);
 
