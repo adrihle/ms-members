@@ -11,7 +11,11 @@ export const CardWrapper = styled.section<{ grid: number }>`
   margin-top: 30px;
 `;
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.section<{ isLoading?: boolean }>`
   display: flex;
   justify-content: center;
+  padding-top: ${({ isLoading }) => isLoading ? '150px' : '0'};
+  .ant-spin-dot-item {
+    background-color: ${({ theme }) => theme.colors.PRIMARY};
+  }
 `;

@@ -19,8 +19,8 @@ export const MemberListContainer: React.FC<Props> = ({ members }) => {
       <Wrapper>
         <Pagination current={page} onChange={navigate} pageSize={12} total={120} simple disabled={isLoading} />
       </Wrapper>
-      <Wrapper>
-        {isLoading && <Spin />}
+      <Wrapper {...{isLoading}}>
+        {isLoading && <Spin size="large"/>}
         {!isLoading && (
           <CardWrapper {...{grid}}>
             {members.map(member => <MemberCard key={member.id} {...{member, setOpenModal, setMember}} />)}
