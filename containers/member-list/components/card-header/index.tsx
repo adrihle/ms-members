@@ -27,7 +27,6 @@ export const CardHeader: React.FC<Props> = ({ member, isModal = false }) => {
         shape='circle' 
         onError={() =>{ setImage(LOGO_SMALL_URL); return false}}
         size={imageSize}
-        
       />
       <div>
         <p>{name}</p>
