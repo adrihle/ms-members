@@ -6,11 +6,18 @@ const formatAge = (age: unknown): number => {
   const isNumber = typeof age === 'number';
   if (isNumber) return age;
   return Math.floor(Math.random() * 100);
-}
+};
 
-const formatImage = (url: string) => {
+const formatImage = (url: string, name: string) => {
   const isNumberType = typeof url === 'number';
-  return isNumberType ? LOGO_SMALL_URL : url.replace('/assets', '');
+  let formatedImage = isNumberType ? LOGO_SMALL_URL : url.replace('/assets', '');
+  return buildMemberImageFromName(formatedImage);
+};
+
+const buildMemberImageFromName = (inputImage: string): string => {
+  if (inputImage !== LOGO_SMALL_URL) return inputImage;
+  const [ name, lastName ] = formatName(inputImage).split(' ');
+  return `https://www.mediasmart.io/images/team/${name}.${lastName}.funny.jpg`;
 };
 
 const formatName = (imageUrl: string) => {
@@ -29,7 +36,7 @@ const capitalizeWord = (word: string): string => {
 
 export const formatMembers = (members: IMember[]): IMember[] => {
   return members.map(({image, name, age, ...rest}) => {
-    const formatedImage = formatImage(image);
+    const formatedImage = formatImage(image, name);
     return {
       ...rest,
       image: formatedImage,

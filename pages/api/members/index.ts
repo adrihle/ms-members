@@ -10,8 +10,6 @@ const getMembers = async (page = 1): Promise<IMember[]> => {
 
   const secondsToRevalidate = getMilisecondsToRevalidateCache();
 
-  console.log({ secondsToRevalidate })
-
   const members = await EndpointService.getMembers(page);
 
   cache.put(page, members, secondsToRevalidate);
