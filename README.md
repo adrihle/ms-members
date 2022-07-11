@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Important!!!
+
+Before run the project, remember to add a file `.env.local` with a `TOKEN` variable with the token u know 😏
+
 ## Getting Started
 
 First, run the development server:
