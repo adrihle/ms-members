@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Wrapper } from './style';
 import { LOGO_SMALL_URL } from "@constants";
 import { T } from "i18n";
+import { useResponsive } from "@hooks";
 
 interface Props {
   member: IMember;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export const MemberCard: React.FC<Props> = ({ member, setOpenModal, setMember }) => {
+  const { imageSize } = useResponsive();
   const { name, age } = member;
   const [image, setImage] = useState<string>(LOGO_SMALL_URL);
   
@@ -27,7 +29,12 @@ export const MemberCard: React.FC<Props> = ({ member, setOpenModal, setMember })
   return (
     <Wrapper onClick={handleOpenModal}>
       <section>
-        <Avatar src={image} shape='circle' onError={() =>{ setImage(LOGO_SMALL_URL); return false}}/>
+        <Avatar 
+          src={image} 
+          shape='circle' 
+          onError={() =>{ setImage(LOGO_SMALL_URL); return false}}
+          size={imageSize}
+        />
         <p>{name}</p>
       </section>
       <section>

@@ -1,13 +1,12 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import styled from 'styled-components';
 
-import { DashboardContainer } from '@containers';
+import { MemberListContainer } from '@containers';
 import axios from 'axios';
 import { IMember } from 'interfaces';
 import { PAGE_SIZE } from '@constants';
 
-const Wrapper = styled.div`
-`;
+const Wrapper = styled.div``;
 
 interface Props {
   members: IMember[];
@@ -16,7 +15,7 @@ interface Props {
 const Home: NextPage<Props> = ({ members }) => {
   return (
     <Wrapper>
-      <DashboardContainer {...{members}}/>
+      <MemberListContainer {...{members}}/>
     </Wrapper>
   )
 }
