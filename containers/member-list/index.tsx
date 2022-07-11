@@ -10,7 +10,6 @@ interface Props {
   members: IMember[];
 };
 
-
 export const MemberListContainer: React.FC<Props> = ({ members }) => {
   const { isLoading, page, navigate } = usePagination();
   const { isOpen, setMember, currentMember, setOpenModal } = useModal();

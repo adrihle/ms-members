@@ -1,5 +1,7 @@
 export const EN = {
   NAVBAR_TITLE: 'Members',
   MEMBER_AGE: (age: number) => `${age} years old`,
-  DEFAULT_NAME: 'Jhon Doe'
+  DEFAULT_NAME: 'Jhon Doe',
+  AGE: 'Age',
+  BIO: 'Bio'
 }
