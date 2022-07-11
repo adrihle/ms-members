@@ -1,9 +1,11 @@
 import axios from "axios";
 import { HttpStatus, IMember } from "interfaces";
-import { createEndpoints, formatMembers, RouteError, RouteHandler } from "modules";
+import { createEndpoints, RouteError, RouteHandler } from "modules";
 import cache from 'memory-cache';
+import { formatMembers } from "helpers";
+import { env } from "env";
 
-const ENDPOINT = 'http://work.mediasmart.io';
+const ENDPOINT = env.endpoint;
 
 const getMembers = async (page = 1, pageSize = 12): Promise<IMember[]> => {
   const members = await axios.get<IMember[]>(`${ENDPOINT}/?page_size=${pageSize}&page=${page}`, {
@@ -16,7 +18,7 @@ const getMembers = async (page = 1, pageSize = 12): Promise<IMember[]> => {
   
   if (!members) throw new RouteError(HttpStatus.NOT_FOUND, 'Members not found');
 
-  const formatedMembers = await formatMembers(members);
+  const formatedMembers = formatMembers(members);
   cache.put(page, formatedMembers);
   return formatedMembers;
 };

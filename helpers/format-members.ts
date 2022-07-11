@@ -27,16 +27,14 @@ const capitalizeWord = (word: string): string => {
   return firstLetter + remain;
 };
 
-export const formatMembers = async (members: IMember[]): Promise<IMember[]> => {
-  const fromatedMembers: IMember[] = [];
-  for (const { image, name, age, ...rest } of members){
+export const formatMembers = (members: IMember[]): IMember[] => {
+  return members.map(({image, name, age, ...rest}) => {
     const formatedImage = formatImage(image);
-    fromatedMembers.push({
+    return {
       ...rest,
       image: formatedImage,
       name: formatName(formatedImage),
       age: formatAge(age)
-    })
-  }
-  return fromatedMembers;
+    }
+  });
 };

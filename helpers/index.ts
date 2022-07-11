@@ -1,1 +1,1 @@
-export * from './formaters';
+export * from './format-members';
