@@ -25,6 +25,14 @@ const Home: NextPage<Props> = ({ members }) => {
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ query: { page } }) => {
+  if (!page) return {
+    redirect: {
+      destination: '/?page=1'
+    },
+    props: {
+      members: []
+    }
+  }
   const response = await MemberService.getMembers(page);
   return {
     props: {
