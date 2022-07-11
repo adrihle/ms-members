@@ -5,7 +5,13 @@
       "@containers": ["containers"],
       "@hooks": ["hooks"],
       "@styles": ["styles"],
-      "@constants": ["constants"]
+      "@constants": ["constants"],
+      "@interfaces": ["interfaces"],
+      "@env": ["env"],
+      "@modules": ["modules"],
+      "@services": ["services"],
+      "@i18n": ["i18n"],
+      "@helpers": ["helpers"]
     }
   }
 }
